@@ -1,0 +1,34 @@
+CREATE DATABASE studentdb;
+USE studentdb;
+
+CREATE TABLE login (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(50) NOT NULL,
+    unvan VARCHAR(20) NOT NULL,
+    studentnum INT
+);
+
+CREATE TABLE students (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    surname VARCHAR(50) NOT NULL,
+    studentnum INT UNIQUE NOT NULL
+);
+
+CREATE TABLE lessons (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    ders_adi VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE grades (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    studentnum INT,
+    ders INT,
+    vizenot FLOAT,
+    finalnot FLOAT,
+    ortalama FLOAT,
+    harfnot VARCHAR(5),
+    FOREIGN KEY (studentnum) REFERENCES students(studentnum),
+    FOREIGN KEY (ders) REFERENCES lessons(id)
+);
